@@ -10,8 +10,8 @@ import springbook.user.domain.User;
 public class UserDao {
 	private ConnectionMaker connectionMaker;
 	
-	public UserDao() {
-		connectionMaker = new DConnectionMaker();
+	public UserDao(ConnectionMaker connectionMaker) {
+		this.connectionMaker = connectionMaker;
 	}
 	
 	public void add(User user) throws ClassNotFoundException, SQLException {
@@ -49,7 +49,8 @@ public class UserDao {
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		UserDao dao = new UserDao();
+		ConnectionMaker connectionMaker = new DConnectionMaker();
+		UserDao dao = new UserDao(connectionMaker);
 		
 		User user = new User();
 		user.setId("whiteship");
